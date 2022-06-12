@@ -28,18 +28,15 @@ public class BoogleMapsApplicationTests {
 
 	@Test
 	public void getVehiclePrice() throws Exception{
-		MultiValueMap<String, String> map = new LinkedMultiValueMap<>();
-		//lat = latitude
-		map.add("lat", "150.70");
-		//lon = longitude
-		map.add("lon", "140.60");
 
-		mockMvc.perform(
-						get(new URI("/maps"))
-								.params(map)
-								.contentType(MediaType.APPLICATION_JSON)
-								.accept(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk());
+		//lat = latitude
+
+		//lon = longitude
+
+		mockMvc.perform(get(new URI("/maps?lat=2&lon=3"))
+						.contentType(MediaType.APPLICATION_JSON)
+						.accept(MediaType.APPLICATION_JSON))
+						.andExpect(status().isOk());
 	}
 
 }
