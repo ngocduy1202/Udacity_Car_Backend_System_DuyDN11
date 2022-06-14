@@ -105,11 +105,18 @@ public class CarService {
 //                    }).orElseThrow(CarNotFoundException::new);
 //        }
 
+
+        //updated follow the review ^^
+
         if (Objects.nonNull(car.getId())) {
             return repository.findById(car.getId())
                     .map(carToBeUpdated -> {
                         carToBeUpdated.setDetails(car.getDetails());
                         carToBeUpdated.setLocation(car.getLocation());
+                        carToBeUpdated.setCondition(car.getCondition());
+                        carToBeUpdated.setCreatedAt(car.getCreatedAt());
+                        carToBeUpdated.setModifiedAt(car.getModifiedAt());
+                        carToBeUpdated.setPrice(car.getPrice());
                         return repository.save(carToBeUpdated);
                     }).orElseThrow(CarNotFoundException::new);
         }
