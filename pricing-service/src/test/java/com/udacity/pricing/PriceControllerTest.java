@@ -19,6 +19,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(PricingController.class)
 public class PriceControllerTest {
 
+    // define for selftest
+    // follow the instructor
     @Autowired
     private MockMvc mockMvc;
 

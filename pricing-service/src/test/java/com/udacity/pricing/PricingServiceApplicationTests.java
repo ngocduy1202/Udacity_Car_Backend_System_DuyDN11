@@ -27,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @WebMvcTest(PricingController.class)
 //@SpringBootTest
-@ContextConfiguration(classes= Application.class)
+@ContextConfiguration(classes= PricingServiceApplication.class)
 public class PricingServiceApplicationTests {
 
 	@Autowired
@@ -42,6 +42,8 @@ public class PricingServiceApplicationTests {
 	public void contextLoads() {
 	}
 
+	// define for selftest
+	// follow the instructor
 	@Test
 	public void getRequest() throws Exception{
 		mockMvc.perform(get("/services/price?vehicleId="+VALID_ID))
@@ -50,21 +52,21 @@ public class PricingServiceApplicationTests {
 	}
 
 
-//	@Test
-//	public void testGetRequest() throws Exception {
-//		mockMvc.perform(MockMvcRequestBuilders
-//						.get("/services/price?vehicleId="+VALID_ID)
-//						.accept(MediaType.APPLICATION_JSON_UTF8))
-//				.andExpect(status().isOk());
-//	}
-//
-//	@Test
-//	public void getPriceInvalidVehicleId() throws Exception {
-//		mockMvc.perform(
-//						get(new URI("/services/price?vehicleId=1"+INVALID_ID))
-//								.contentType(MediaType.APPLICATION_JSON)
-//								.accept(MediaType.APPLICATION_JSON))
-//				.andExpect(status().isNotFound());
-//	}
+	@Test
+	public void testGetRequest() throws Exception {
+		mockMvc.perform(MockMvcRequestBuilders
+						.get("/services/price?vehicleId="+VALID_ID)
+						.accept(MediaType.APPLICATION_JSON_UTF8))
+				.andExpect(status().isOk());
+	}
+
+	@Test
+	public void getPriceInvalidVehicleId() throws Exception {
+		mockMvc.perform(
+						get(new URI("/services/price?vehicleId=1"+INVALID_ID))
+								.contentType(MediaType.APPLICATION_JSON)
+								.accept(MediaType.APPLICATION_JSON))
+				.andExpect(status().isBadRequest());
+	}
 
 }
